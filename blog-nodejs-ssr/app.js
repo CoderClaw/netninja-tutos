@@ -14,12 +14,17 @@ app.use(express.static('public'))
 
 connectDB();
 
+app.use(express.urlencoded({extended:true}))
+app.use(express.json())
+
+
 //templating engine
 app.use(expressLayout);
 app.set('layout', './layouts/main');
 app.set('view engine', 'ejs');
 
 app.use('/', require('./server/routes/main.js'));
+app.use('/', require('./server/routes/admin.js'));
 
 
 app.listen(PORT,()=>{
